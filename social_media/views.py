@@ -37,3 +37,27 @@ def comment(request,id):
 		form = CommentForm()
 
 	return render(request,'comment.html',{"form":form})  
+
+
+@login_required(login_url='/accounts/login/')
+def profile(request):
+    current_user = request.user
+    profile = Profile.objects.all()
+    follower = Follow.objects.filter(user = profile)
+
+    return render(request, 'profile.html',{"current_user":current_user,"profile":profile,"follower":follower})
+
+@login_required(login_url='/accounts/login/')
+def timeline(request):
+	current_user = request.user 
+	Myprofile = Profile.objects.order_by('-time_uploaded')
+	comment = Comment.objects.order_by('-time_comment')
+	
+
+	return render(request, 'my-inst/timeline.html',{"Myprofile":Myprofile,"comment":comment})
+
+@login_required(login_url='/accounts/login/')
+def single_pic(request,pic_id):
+	pic = pic.objects.get(id= pic_id)
+
+	return render(request, 'my-inst/single_pic.html',{"pic":pic})
