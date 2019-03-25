@@ -82,3 +82,36 @@ def search_results(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'search_image.html',{"message":message})
+
+
+@login_required(login_url='/accounts/login/')
+def upload_profile(request):
+    current_user = request.user 
+    title = 'Upload Profile'
+    try:
+        requested_profile = Profile.objects.get(user_id = current_user.id)
+        if request.method == 'POST':
+            form = ProfileUploadForm(request.POST,request.FILES)
+
+            if form.is_valid():
+                requested_profile.profile_pic = form.cleaned_data['profile_pic']
+                requested_profile.bio = form.cleaned_data['bio']
+                requested_profile.username = form.cleaned_data['username']
+                requested_profile.save_profile()
+                return redirect( profile )
+        else:
+            form = ProfileUploadForm()
+    except:
+        if request.method == 'POST':
+            form = ProfileUploadForm(request.POST,request.FILES)
+
+            if form.is_valid():
+                new_profile = Profile(profile_pic = form.cleaned_data['profile_pic'],bio = form.cleaned_data['bio'],username = form.cleaned_data['username'])
+                new_profile.save_profile()
+                return redirect( profile )
+        else:
+            form = ProfileUploadForm()
+
+
+    return render(request,'upload_profile.html',{"title":title,"current_user":current_user,"form":form})
+
