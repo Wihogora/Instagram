@@ -17,7 +17,7 @@ def index(request):
     return render(request, 'index.html', {"title":title,"image_posts":image_posts})
 
 
-# @login_required(login_url='/accounts/login/')
+@login_required(login_url='/accounts/login/')
 def comment(request,id):
 	
 	post = get_object_or_404(Image,id=id)	
@@ -57,7 +57,15 @@ def timeline(request):
 	return render(request, 'my-inst/timeline.html',{"Myprofile":Myprofile,"comment":comment})
 
 @login_required(login_url='/accounts/login/')
-def single_pic(request,pic_id):
-	pic = pic.objects.get(id= pic_id)
+def single_image(request,image_id):
+	image = image.objects.get(id= image_id)
 
-	return render(request, 'my-inst/single_pic.html',{"pic":pic})
+	return render(request, 'my-inst/single_image.html',{"image":image})
+
+
+@login_required(login_url='/accounts/login/')
+def like(request,image_id):
+	Image = Image.objects.get(id=image_id)
+	like +=1
+	save_like()
+	return redirect(timeline)
