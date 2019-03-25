@@ -73,7 +73,7 @@ class Images(models.Model):
 
 class Comment(models.Model):
 	user = models.ForeignKey(User, null= True)
-	pic = models.ForeignKey(Pic, null= True,related_name='comment')
+    image = models.ForeignKey(Image, null= True,related_name='comment')
 	comment= models.TextField( blank=True)
 	
 	def __str__(self):
