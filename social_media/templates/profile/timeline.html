@@ -16,16 +16,17 @@
 <div class="well">
 <div><h5>{{image.user_key}}</h5></div>
 <img src={{image.image.url}} id="timeline_image">
-<div> <a href="{% url 'like' image.id %}"></a>
-<a href="{% url 'comment' image.id %}">
+<div>  
+       <a href="{% url 'like' image.id %}"></a>
+       <a href="{% url 'comment' image.id %}">
 </a><span class="glyphicon glyphicon-bookmark"></span>
 <h5 >{{image.likes}}likes</h5>
 <div >
     <h5>{{image.comments_number}} comments<a href="{% url 'comment' image.id %}"> View </a></h5>
 </div>
-            <h5>{{image.pub_date | date}} </h5>
-                <hr>
-                <a href="{% url 'comment' image.id %}"> Comment</a>
+    <h5>{{image.pub_date | date}} </h5>
+        <hr>
+        <a href="{% url 'comment' image.id %}"> Comment</a>
 </div>
 </div>
 {%endfor%}
