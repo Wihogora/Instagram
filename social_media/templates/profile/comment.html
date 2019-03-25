@@ -1,0 +1,14 @@
+{% extends 'profile/base.html'%} 
+{% load staticfiles%}
+{% load bootstrap3 %} 
+{% block content %}
+{{block.super}}
+
+<div class="container">
+<div class="col-md-6"></div>
+<div class="col-md-6">
+<h4>Comments</h4>
+{% for comment in comments%}
+<h5><span>{{comment.user_id}}:</span>{{comment}} </h5> 
+{% endfor %}
+</div>

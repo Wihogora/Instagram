@@ -54,13 +54,13 @@ def timeline(request):
 	comment = Comment.objects.order_by('-time_comment')
 	
 
-	return render(request, 'my-inst/timeline.html',{"Myprofile":Myprofile,"comment":comment})
+	return render(request, 'profile/timeline.html',{"Myprofile":Myprofile,"comment":comment})
 
 @login_required(login_url='/accounts/login/')
 def single_image(request,image_id):
 	image = image.objects.get(id= image_id)
 
-	return render(request, 'my-inst/single_image.html',{"image":image})
+	return render(request, 'profile/single_image.html',{"image":image})
 
 
 @login_required(login_url='/accounts/login/')
@@ -135,4 +135,4 @@ def upload_images(request):
             return redirect( timeline)
     else:
         form = ImageForm() 
-    return render(request, 'my-inst/upload_images.html',{"form" : form}) 
+    return render(request, 'profile/upload_images.html',{"form" : form}) 
