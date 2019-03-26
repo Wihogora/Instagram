@@ -7,20 +7,20 @@
             {% for image in image_posts %}
             <div class="home-images">
                 <p class="home-text">
-                    <a href="{% url 'profile' username=image.profile.username %}">{{image.profile.username}}</a>
+                    <a href="{% url 'profile' %}">{{image.profile.username}}</a>
                 </p>
-                <img src="{{image.photo.cdn_url}}" alt="Image">
+                <img src="{{image.image.url}}" style="width: 200px; height: 200px;" alt="Image">
                 <ul class="list-inline home-text">
                     <li class="list-inline-item">
-                        <i class="fa fa-heart-o fa-2x" aria-hidden="true"></i>
+                        <i class="fa fa-heart-o fa-2x" ></i>
                     </li>
                     <li class="list-inline-item">
-                        <a href="{% url 'single_image' image_id=image.id %}"><i class="fa fa-comment-o fa-2x" aria-hidden="true"></i></a>
+                        <a href="{% url 'single_image' image.id %}"><i class="fa fa-comment-o fa-2x" aria-hidden="true"></i></a>
                     </li>
                 </ul>
                 <ul class="list-inline home-list">
                     <li class="list-inline-item">
-                        <a href="{% url 'profile' username=image.profile.username %}">{{image.profile.username}}</a>
+                        <a href="{% url 'profile' %}">{{image.profile.username}}</a>
                     </li>
                     <li class="list-inline-item">
                     {% autoescape on %}
