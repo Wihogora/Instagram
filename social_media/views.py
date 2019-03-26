@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Profile, Image, Comment, Follow, Unfollow, Likes
-from . forms import ProfileUploadForm,CommentForm,ProfileForm
+from . forms import ProfileUploadForm,CommentForm,ProfileForm,ImageForm,ImageUploadForm
 from django.http  import HttpResponse
 from django.conf import settings
 
@@ -74,10 +74,10 @@ def like(request,image_id):
 def search_results(request):
     if 'image' in request.GET and request.GET["image"]:
         search_term = request.GET.get("image")
-        searched_profiles = Profile.search_profile(search_term)
+        searched_images = Image.search_image(search_term)
         message = f"{search_term}"
 
-        return render(request, 'search_image.html',{"message":message,"images": searched_profiles})
+        return render(request, 'search_image.html',{"message":message,"images": searched_images})
 
     else:
         message = "You haven't searched for any term"
@@ -129,10 +129,10 @@ def upload_images(request):
         if form.is_valid():
             image = form.save(commit = False)
             image.user_key = current_user
-            image.likes +=0
+            # image.likes +=0
             image.save() 
 
-            return redirect( timeline)
+            # return redirect( timeline)
     else:
         form = ImageForm() 
     return render(request, 'profile/upload_images.html',{"form" : form}) 
