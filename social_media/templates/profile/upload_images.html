@@ -1,18 +1,33 @@
-{% extends 'profile/base.html'%}
-{% load staticfiles%}
-{% load bootstrap3 %}
-{% block content %}
-{{block.super}}
+{% load bootstrap3 %} {% load staticfiles %}
+<!DOCTYPE html>
+<html>
 
-<div class="container">
-<div class="col-md-3"></div>
-<div class="col-md-3">
-<form method="post" enctype="multipart/form-data">
-{% csrf_token %} {% bootstrap_form form%}
-<input type="submit" class="btn btn-primary btn-sm" value="Submit">
-<input type="hidden" name="next" value="{{next}}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>New Image</title>
+  {{form.media}}
+
+{% block styles %} {% bootstrap_css %}
+  <link rel="stylesheet" href="{% static 'css/basephotos.css' %}"> {% endblock %}
+
+</head>
+
+<body>
+
+  <form  action="{%url 'upload_images'%}" method="POST" enctype="multipart/form-data" >
+    {%csrf_token%}
+
+    {% bootstrap_form form%}
+    <input type="submit" class="btn btn-success btn-lg" value="Post">
 </form>
-</div>
-<div class="col-md-3"></div>
-</div>
-{% endblock %}
+    
+
+   {% block scripts %}
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  {% bootstrap_javascript %} {% endblock %}
+  
+</body>
+
+</html>
