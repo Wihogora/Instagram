@@ -15,7 +15,7 @@
 {% for image in timeline_image%}
 <div class="well">
 <div><h5>{{image.user_key}}</h5></div>
-<img src={{image.image.url}} id="timeline_image">
+<img src={{image.image.url}} id="timeline_image" style="width: 200px; height: 200px;">
 <div>  
        <a href="{% url 'like' image.id %}"></a>
        <a href="{% url 'comment' image.id %}">

@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 
 
 urlpatterns=[
-    # url(r'^$', views.login_redirect, name='login_redirect'),
+    
     url('^$',views.index, name='index'),
     # url(r'^$',views.profile,name = 'profile'),
     # url(r'^$',views.timeline,name = 'timeline'),

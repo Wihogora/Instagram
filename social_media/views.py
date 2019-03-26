@@ -129,7 +129,7 @@ def upload_images(request):
         if form.is_valid():
             image = form.save(commit = False)
             image.user_key = current_user
-            # image.likes +=0
+           
             image.save() 
 
             # return redirect( timeline)
