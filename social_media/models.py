@@ -25,15 +25,15 @@ class Profile(models.Model):
 
 
 
-class Images(models.Model):
+class Image(models.Model):
     image = models.ImageField(upload_to = "images/",null = True)
     user = models.ForeignKey(User,on_delete = models.CASCADE, null=True)
     image_name = models.CharField(max_length = 40,null = True)
-    likes = models.IntegerField(default=0)
+    # likes = models.IntegerField(default=0)
     image_caption = models.TextField(null = True)
     pub_date = models.DateTimeField(auto_now_add=True,null=True)
     # profile = models.ForeignKey(Profile, null=True) 
-    comments = models.IntegerField(default=0)
+    # comments = models.IntegerField(default=0)
 
 
     def __str__(self):
@@ -50,6 +50,11 @@ class Images(models.Model):
     	self.save()
 
     @classmethod
+    def search_by_name(cls,search_term):
+        photos = cls.objects.filter(name__icontains=search_term)
+        return photos
+
+    @classmethod
     def get_images_by_user(cls,id):
         sent_images = Image.objects.filter(user_id=id)
         return sent_images
@@ -63,9 +68,7 @@ class Images(models.Model):
     	ordering = ['-pub_date']
 
 
-    def __str__(self):
-    	return self.user.username
-
+    
     def save_profile(self):
     	self.save()
 
@@ -102,7 +105,7 @@ class Follow(models.Model):
 
 
 class Unfollow(models.Model):
-	user = models.ForeignKey(Profile,null=True)
+	user = models.ForeignKey(Profile,on_delete = models.CASCADE,null=True)
 	follower = models.ForeignKey(User,on_delete = models.CASCADE,null=True)
 
 	def __int__(self):
