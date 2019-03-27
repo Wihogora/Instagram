@@ -10,7 +10,7 @@ The Instagram-Clone app is a web application that helps users to see the photos 
 First of all you must sign in to be able to use instagram, if you don't have an account yet you must create account first so that you can view different users and photos.
 
 ## Link
-https://galerywivine.herokuapp.com/
+ https://instagramwivine.herokuapp.com/
 
 ## Setup/Installation Requirements
 To run this program, run this command lines in your terminal:
