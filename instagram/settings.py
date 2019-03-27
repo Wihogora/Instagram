@@ -55,7 +55,7 @@ SECRET_KEY = 'p834(b_u6v!()+_!@yforzn@futh@f^t_fuff@8ty2sg-tk2g7'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+
 
 
 # Application definition
