@@ -8,10 +8,10 @@ urlpatterns=[
     
     url('^$',views.index, name='index'),
     # url(r'^$',views.profile,name = 'profile'),
-    # url(r'^$',views.timeline,name = 'timeline'),
+    
     url(r'^image/(\d+)', views.single_image, name='single_image'),
     url(r'^comment/(?P<id>\d+)', views.comment, name='comment'),
-    # url(r'^user/(\d+)', views.user_details, name='userDetails'),
+   
     url(r'^profile/', views.profile, name='profile'),
     url(r'^single_image/(\d+)', views.single_image, name='single_image'),
     url(r'^upload_images/', views.upload_images, name='upload_images'),

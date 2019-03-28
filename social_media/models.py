@@ -29,12 +29,10 @@ class Image(models.Model):
     image = models.ImageField(upload_to = "images/",null = True)
     user = models.ForeignKey(User,on_delete = models.CASCADE, null=True)
     image_name = models.CharField(max_length = 40,null = True)
-    # likes = models.IntegerField(default=0)
+    
     image_caption = models.TextField(null = True)
     pub_date = models.DateTimeField(auto_now_add=True,null=True)
-    # profile = models.ForeignKey(Profile, null=True) 
-    # comments = models.IntegerField(default=0)
-
+    
 
     def __str__(self):
     	return self.image_name
@@ -114,7 +112,7 @@ class Unfollow(models.Model):
 
 class Likes(models.Model):
 	user = models.ForeignKey(Profile,on_delete = models.CASCADE,null=True)
-	# pic = models.ForeignKey(Pic,null=True)
+	
 
 	def __int__(self):
 		return self.name

@@ -11,7 +11,7 @@ from django.conf import settings
 def index(request):
     title = 'Instagram'
     image_posts = Image.objects.all()
-    # comments = Comment.objects.all()
+   
 
     print(image_posts)
     return render(request, 'index.html', {"title":title,"image_posts":image_posts})
@@ -132,7 +132,7 @@ def upload_images(request):
            
             image.save() 
 
-            # return redirect( timeline)
+           
     else:
         form = ImageForm() 
     return render(request, 'profile/upload_images.html',{"form" : form}) 
